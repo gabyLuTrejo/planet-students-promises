@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Planets promises</title>
+</head>
+<body>
+<h1>Planets</h1>
+<section id="dataPlanets"></section>
+
+<script>
+
+	var template = '<h2>__name__</h2>' +
+		'<p>__years__ lightyears away</p>' +
+		'<p>Discovered in __date__ with __telescope__</p>';
+
+	function getJSON(url){
+		return new Promise(function(resolve,reject){
+        	var ajax = new XMLHttpRequest();
+			ajax.open("GET",url);
+          	ajax.send();
+          	ajax.onreadystatechange = function(){
+	            if(ajax.readyState == 4){
+	              resolve(JSON.parse(ajax.responseText));
+	            }
+			}
+		});
+	}
+
+	getJSON("data/earth-like-results.json")
+	.then(function (message) {
+		console.log(message)
+		return getJSON(message.results[0])
+	})	
+	.then(function (planet) {
+		console.log(planet);
+ 		var planetTemplate = template.replace("__name__", planet.pl_name)
+ 			.replace("__years__", planet.pl_mnum).replace("__date__", planet.pl_disc )
+ 			.replace("__telescope__", planet.pl_telescope);
+ 		console.log(planetTemplate);
+	})
+</script>
+
+</body>
+</html>
