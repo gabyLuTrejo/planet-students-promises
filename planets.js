@@ -15,32 +15,36 @@ var template = '<div class="row">' +
       	'</div>' +
     	'</div>';
 
-function getJSON(url){
-	return new Promise(function(resolve,reject){
-    	var ajax = new XMLHttpRequest();
-		ajax.open("GET",url);
-      	ajax.send();
-      	ajax.onreadystatechange = function(){
-            if(ajax.readyState == 4){
-              resolve(JSON.parse(ajax.responseText));
-            }
-		}
-	});
-}
+// function getJSON(url){
+// 	return new Promise(function(resolve,reject){
+//     	var ajax = new XMLHttpRequest();
+// 		ajax.open("GET",url);
+//       	ajax.send();
+//       	ajax.onreadystatechange = function(){
+//             if(ajax.readyState == 4){
+//               resolve(JSON.parse(ajax.responseText));
+//             }
+// 		}
+// 	});
+// }
 
-getJSON("data/earth-like-results.json")
-.then(function (message) {
-	var urlPlanets = (message.results.map(function(url){
-		return getJSON(url);
-	}));
-	 return Promise.all(urlPlanets);
+fetch("data/earth-like-results.json")
+.then((resp) => resp.json()) // Transform the data into json
+.then(function(data) {
+	console.log(data)
 })
 
-.then(function (planets) {
-	planets.forEach(function(planet){
-		var planetTemplate = template.replace("__name__", planet.pl_name)
-		.replace("__radius__", planet.st_rad).replace("__date__", planet.pl_disc )
-		.replace("__telescope__", planet.pl_telescope);
-		document.getElementById("dataPlanets").innerHTML += (planetTemplate);
-	});
-})	
+	// var urlPlanets = (message.results.map(function(url){
+	// 	return json(url);
+	// }));
+	//  return Promise.all(urlPlanets);
+
+
+// .then(function (planets) {
+// 	planets.forEach(function(planet){
+// 		var planetTemplate = template.replace("__name__", planet.pl_name)
+// 		.replace("__radius__", planet.st_rad).replace("__date__", planet.pl_disc )
+// 		.replace("__telescope__", planet.pl_telescope);
+// 		document.getElementById("dataPlanets").innerHTML += (planetTemplate);
+// 	});
+// })	
