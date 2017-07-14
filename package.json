@@ -1,0 +1,28 @@
+{
+  "name": "planet_promises",
+  "version": "1.0.0",
+  "description": "promises,js,XMLHttp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabyLuTrejo/planet-students-promises.git"
+  },
+  "keywords": [
+    "promises",
+    "js",
+    "XMLHttp"
+  ],
+  "author": "Gaby Trejo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabyLuTrejo/planet-students-promises/issues"
+  },
+  "homepage": "https://github.com/gabyLuTrejo/planet-students-promises#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "materialize-css": "^0.99.0"
+  }
+}
