@@ -15,14 +15,18 @@ var template = '<div class="row">' +
       	'</div>' +
     	  '</div>';
 
+
 fetch("data/earth-like-results.json")
 .then((resp) => resp.json()) // Transform the data into json
 .then(function(data) {
-	var planets = data.results;
-	planets.forEach(function(planet){
-		var planetTemplate = template.replace("__name__", planet.pl_name)
-		.replace("__radius__", planet.st_rad).replace("__date__", planet.pl_disc )
-		.replace("__telescope__", planet.pl_telescope);
-		document.getElementById("dataPlanets").innerHTML += (planetTemplate);
+	data.results.forEach(function(planetUrl){
+		fetch(planetUrl)
+		.then((resp) => resp.json())
+		.then (function(planet){
+			var planetTemplate = template.replace("__name__", planet.pl_name)
+			.replace("__radius__", planet.st_rad).replace("__date__", planet.pl_disc )
+			.replace("__telescope__", planet.pl_telescope);
+			document.getElementById("dataPlanets").innerHTML += (planetTemplate);
+		});		
 	});
 })
