@@ -29,37 +29,3 @@ fetch("data/earth-like-results.json")
 		});		
 	});
 })
-
-/*function getJSON(url){
- 	return new Promise(function(resolve,reject){
-     	var ajax = new XMLHttpRequest();
- 		ajax.open("GET",url);
-       	ajax.send();
-       	ajax.onreadystatechange = function(){
-             if(ajax.readyState == 4){
-               resolve(JSON.parse(ajax.responseText));
-             }
- 		}
- 	});
- }
- 
- getJSON("data/earth-like-results.json")
- .then(function (message) {
- 	var urlPlanets = (message.results.map(function(url){
- 		console.log(getJSON(url))
- 		return getJSON(url);
- 	}));
- 	console.log(Promise.all(urlPlanets))
- 	 return Promise.all(urlPlanets);
- })
- 
- .then(function (planets) {
- 	console.log(planets)
- 	planets.forEach(function(planet){
- 		console.log(planet)
- 		var planetTemplate = template.replace("__name__", planet.pl_name)
- 		.replace("__radius__", planet.st_rad).replace("__date__", planet.pl_disc )
- 		.replace("__telescope__", planet.pl_telescope);
- 		document.getElementById("dataPlanets").innerHTML += (planetTemplate);
- 	});
- })*/
